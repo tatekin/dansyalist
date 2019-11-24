@@ -1,0 +1,16 @@
+%p 
+  = @tweet.user.nickname
+  = @tweet.text
+
+- if current_user
+  = form_tag("/tweets/#{@tweet.id}/comments", method: :post) do
+    %textarea{name: "text", placeholder: "コメントする"}
+    %input{type: "submit", value: "SENT"}
+  -# = form_with url: tweet_comments_path(@tweet) do |form|
+  -#   = form.text_field :text
+  -#   = form.submit
+
+- if @comments
+  - @comments.each do |comment|
+    = link_to "#{comment.user.nickname}", user_path(comment.user)
+    = comment.text
