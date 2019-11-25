@@ -18,6 +18,6 @@
 
   = link_to "詳細", tweet_path(tweet)
   = link_to "編集", edit_tweet_path(tweet)
-  = link_to "削除", tweet_path(tweet), method: :destroy
+  = link_to "削除", tweet_path(tweet), method: :delete
 
 = paginate(@tweets)
