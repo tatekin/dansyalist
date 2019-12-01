@@ -1,4 +1,37 @@
-= @nickname
-- @tweets.each do |tweet|
-  %p 
-    = tweet.text
+.contents
+  = render "tweets/side-bar"
+  .contents__right
+    .contents__right__tweets
+      .contents__right__tweets__users
+        .contents__right__tweets__users__user-nickname
+          = @user.nickname
+          さん
+        .contents__right__tweets__users__follow-button
+          = render "follow_form" if user_signed_in?
+        .contents__right__tweets__users__follows
+          .contents__right__tweets__users__follows__following
+            .contents__right__tweets__users__follows__following__text
+              = link_to "フォロー中", following_user_path(@user)
+            .contents__right__tweets__users__follows__following__count#following
+              = @user.following.count
+          .contents__right__tweets__users__follows__followers
+            .contents__right__tweets__users__follows__followers__text
+              = link_to "フォロワー", following_user_path(@user)
+            .contents__right__tweets__users__follows__followers__count#followers
+              = @user.followers.count
+      - @tweets.each do |tweet|
+        .contents__right__tweets__tweet
+          %p.contents__right__tweets__tweet__user-nickname
+            = link_to "#{tweet.user.nickname}", user_path(tweet.user), class: "contents__right__tweets__tweet__user-nickname_link"
+          %p.contents__right__tweets__tweet__text
+            = tweet.text
+          - if tweet.images
+            - tweet.images.each do |image|
+              = image_tag image, class: "contents__right__tweets__tweet__image"
+          .contents__right__tweets__tweet__option
+            = link_to "詳細", tweet_path(tweet)
+            - if user_signed_in? && current_user.id == tweet.user_id
+              = link_to "編集", edit_tweet_path(tweet)
+              = link_to "削除", tweet_path(tweet), method: :delete, data: { confirm: "削除しますか？" }
+      .contents__right__tweets__paginate
+        = paginate(@tweets)

@@ -1,0 +1,16 @@
+.contents
+  = render "tweets/side-bar"
+  .contents__right
+    .contents__right__tweets
+      .contents__right__tweets__follows
+        .contents__right__tweets__follows__user-nickname
+          = @user.nickname
+          さん
+        .contents__right__tweets__follows__text
+          フォロワー
+      - @users.each do |user|
+        .contents__right__tweets__follow-users
+          %p.contents__right__tweets__follow-users__user
+            = link_to "#{user.nickname}", user_path(user)
+      .contents__right__tweets__paginate
+        = paginate(@users)
