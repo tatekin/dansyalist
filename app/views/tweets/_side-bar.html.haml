@@ -1,0 +1,22 @@
+.contents__left
+  = link_to "断捨list", root_path, class: "contents__left__title"
+  - if user_signed_in?
+    = link_to "#{current_user.nickname}", user_path(current_user), class: "contents__left__user-name"
+    .contents__left__follows
+      .contents__left__follows__following
+        .contents__left__follows__following__text
+          = link_to "フォロー中", following_user_path(current_user)
+        .contents__left__follows__following__count
+          = current_user.following.count
+      .contents__left__follows__followers
+        .contents__left__follows__followers__text
+          = link_to "フォロワー", followers_user_path(current_user)
+        .contents__left__follows__followers__count
+          = current_user.followers.count
+    = link_to "お気に入り", root_path, class: "contents__left__content"
+    = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "contents__left__content"
+    = link_to "マイページ", user_path(current_user), class: "contents__left__content"
+  - else
+    = link_to "新規登録", new_user_registration_path, class: "contents__left__content"
+    = link_to "ログイン", new_user_session_path, class: "contents__left__content"
+  = link_to "新規投稿", new_tweet_path, class: "contents__left__content"

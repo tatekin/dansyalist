@@ -1,4 +1,14 @@
-= form_with model: @tweet do |form|
-  = form.text_area  :text
-  = form.file_field :images, multiple: true
-  = form.submit
+.contents
+  = render "side-bar"
+  .contents__right
+    .contents__right__tweets
+      = form_with model: tweet, local: true do |form|
+        %p.contents__right__tweets__form-text
+          Text
+        = form.text_area  :text, class: "contents__right__tweets__form-textarea"
+        - if tweet.errors.any?
+          .contents__right__tweets__form-text-error
+            - tweet.errors.full_messages.each do |message|
+              = message
+        = form.file_field :images, multiple: true, class: "contents__right__tweets__form-image"
+        = form.submit "作成", class: "contents__right__tweets__form-submit"

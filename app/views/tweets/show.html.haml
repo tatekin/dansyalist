@@ -1,16 +1,31 @@
-%p 
-  = @tweet.user.nickname
-  = @tweet.text
+.contents
+  = render "side-bar"
+  .contents__right
+    .contents__right__tweets
+      .contents__right__tweets__tweet
+        %p.contents__right__tweets__tweet__user-nickname
+          = link_to "#{@tweet.user.nickname}", user_path(@tweet.user), class: "contents__right__tweets__tweet__user-nickname_link"
+        %p.contents__right__tweets__tweet__text
+          = @tweet.text
+        - if @tweet.images
+          - @tweet.images.each do |image|
+            = image_tag image, class: "contents__right__tweets__tweet__image"
+        .contents__right__tweets__tweet__option
+          = link_to "詳細", tweet_path(@tweet)
+          - if user_signed_in? && current_user.id == @tweet.user_id
+            = link_to "編集", edit_tweet_path(@tweet)
+            = link_to "削除", tweet_path(@tweet), method: :delete
 
-- if current_user
-  = form_tag("/tweets/#{@tweet.id}/comments", method: :post) do
-    %textarea{name: "text", placeholder: "コメントする"}
-    %input{type: "submit", value: "SENT"}
-  -# = form_with url: tweet_comments_path(@tweet) do |form|
-  -#   = form.text_field :text
-  -#   = form.submit
-
-- if @comments
-  - @comments.each do |comment|
-    = link_to "#{comment.user.nickname}", user_path(comment.user)
-    = comment.text
+      - if current_user
+        = form_with(model: [@tweet, @comment], local: true) do |form|
+          .contents__right__tweets__form-comment-error
+            = flash[:danger]
+          = form.text_field :text, placeholder: "コメント", class: "contents__right__tweets__form-comment-text"
+          = form.submit "送信", class: "contents__right__tweets__form-comment-submit"
+      - if @comments
+        - @comments.each do |comment|
+          .contents__right__tweets__comments
+            = link_to "#{comment.user.nickname}", user_path(comment.user), class: "contents__right__tweets__comments__user-name"
+            .contents__right__tweets__comments__text
+              = comment.text
+            = link_to "削除", tweet_comment_path(tweet_id: comment.tweet_id, id: comment), method: :delete, class: "contents__right__tweets__comments__delete", data: { confirm: "削除しますか？" }
