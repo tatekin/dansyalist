@@ -1,0 +1,7 @@
+- if Like.find_by(user_id: current_user.id, tweet_id: tweet.id)
+  = link_to tweet_like_path(tweet_id: tweet.id, id: tweet.likes[0].id), method: :delete, class: "like", remote: true do
+    %i{class: "fas fa-heart"}
+- else
+  = link_to tweet_likes_path(tweet), method: :post, class: "like", remote: true do
+    %i{class: "far fa-heart"}
+= tweet.likes.length
