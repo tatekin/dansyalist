@@ -1,3 +1,176 @@
-// Place all the styles related to the tweets controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+html, body{
+  height: 100%;
+}
+
+.contents{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  &__left{
+    width: 20%;
+    height: 100%;
+    background-color: gray;
+    text-align: center;
+    &__title{
+      font-size: 25px;
+      display: block;
+      width: 100px;
+      margin: 30px auto;
+      text-decoration: none;
+      color: white;
+    }
+    &__user-name{
+      color: white;
+      text-decoration: none;
+    }
+    &__follows{
+      display: flex;
+      justify-content: space-around;
+      color: white;
+      margin: 10px 0;
+    }
+    &__content{
+      display: block;
+      width: 100px;
+      margin: 20px auto;
+      text-decoration: none;
+      color: white;
+    }
+  }
+  &__right{
+    width: 80%;
+    height: 100%;
+    background-color: lightgrey;
+    &__tweets{
+      width: 600px;
+      height: 100%;
+      background-color: whitesmoke;
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+      &__users{
+        height: 150px;
+        &__user-nickname{
+          margin-left: 10px;
+          margin-top: 10px;
+          font-size: 25px;
+        }
+        &__follows{
+          display: flex;
+          justify-content: space-around;
+          margin: 25px 0;
+          text-align: center;
+        }
+        &__follow-button{
+          width: 100px;
+          margin-left: auto;
+          margin-right: 15px;
+          background-color: lightskyblue;
+        }
+      }
+      &__tweet{
+        height: 150px;
+        background-color: papayawhip;
+        border: 1px solid black;
+        position: relative;
+        &__user-nickname{
+          position: absolute;
+          top: 10px;
+          left: 10px;
+          &_link{
+            text-decoration: none;
+          }
+        }
+        &__text{
+          line-height: 150px;
+          text-align: center;
+        }
+        &__option{
+          position: absolute;
+          right: 10px;
+          bottom: 10px;
+        }
+      }
+      &__paginate{
+        position: absolute;
+        right: 10px;
+        bottom: 10px;
+      }
+      &__form-text{
+        margin-top: 50px;
+        text-align: center;
+      }
+      &__form-textarea{
+        margin: 0 auto;
+        display: block;
+        background-color: peachpuff;
+      }
+      &__form-text-error{
+        text-align: center;
+        color: red;
+      }
+      &__form-image{
+        margin: 50px auto;
+        display: block;
+        background-color: pink;
+      }
+      &__form-submit{
+        margin: 50px auto;
+        display: block;
+        background-color: salmon;
+      }
+      &__form-comment-error{
+        text-align: center;
+        color: red;
+        margin-top: 50px;
+      }
+      &__form-comment-text{
+        margin: 0 auto;
+        display: block;
+        background-color: cornflowerblue;
+      }
+      &__form-comment-submit{
+        margin: 50px auto;
+        display: block;
+        background-color: wheat;
+      }
+      &__comments{
+        margin: 50px auto;
+        width: 500px;
+        display: flex;
+        background-color: darkorange;
+        &__user-name{
+          text-decoration: none;
+          margin-left: 10px;
+        }
+        &__text{
+          margin-left: 15px;
+        }
+        &__delete{
+          margin-left: auto;
+          margin-right: 10px;
+        }
+      }
+      &__follows{
+        height: 150px;
+        &__user-nickname{
+          margin-left: 10px;
+          margin-top: 10px;
+          font-size: 25px;
+        }
+        &__text{
+          text-align: center;
+          margin-top: 15px;
+          font-size: 30px;
+        }
+      }
+      &__follow-users{
+        &__user{
+          margin: 40px auto;
+          width: 500px;
+          background-color: lightsteelblue;
+        }
+      }
+    }
+  }
+}
