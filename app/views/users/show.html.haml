@@ -4,7 +4,7 @@
     .contents__right__tweets
       .contents__right__tweets__users
         .contents__right__tweets__users__user-nickname
-          = @user.nickname
+          = link_to "#{@user.nickname}", user_path(@user), class: "link-line"
           さん
         .contents__right__tweets__users__follow-button
           = render "follow_form" if user_signed_in?
