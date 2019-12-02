@@ -3,6 +3,7 @@ def create
   tweet = Tweet.find(params[:tweet_id])
   @comment = tweet.comments.build(comment_params)
   if @comment.save
+    tweet.create_notification_comment!(current_user, @comment.id)
     redirect_back(fallback_location: tweet_path(tweet))
   else
     flash[:danger] = "入力してください"
