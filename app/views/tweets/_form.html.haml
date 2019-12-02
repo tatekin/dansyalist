@@ -2,6 +2,10 @@
   = render "side-bar"
   .contents__right
     .contents__right__tweets
+      - if current_page?(new_tweet_path)
+        新規作成
+      - else
+        編集
       = form_with model: tweet, local: true do |form|
         %p.contents__right__tweets__form-text
           Text
