@@ -1,0 +1,19 @@
+.contents
+  = render "tweets/side-bar"
+  .contents__right
+    .contents__right__tweets
+      .contents__right__tweets__title
+        .contents__right__tweets__title__user-nickname
+          = link_to "#{current_user.nickname}", user_path(current_user), class: "link-line"
+          さん
+        .contents__right__tweets__title__text
+          通知
+        - notifications = @notifications.where.not(visitor_id: current_user.id)
+        - if notifications.present?
+          .contents__right__tweets__notifications
+            = render notifications
+            .contents__right__tweets__notifications__paginate
+              = paginate(notifications)
+        - else
+          %p
+            通知はありません

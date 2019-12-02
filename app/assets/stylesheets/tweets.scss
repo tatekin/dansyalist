@@ -151,7 +151,7 @@ html, body{
           margin-right: 10px;
         }
       }
-      &__follows{
+      &__title{
         height: 150px;
         &__user-nickname{
           margin-left: 10px;
@@ -171,6 +171,22 @@ html, body{
           background-color: lightsteelblue;
         }
       }
+      &__notifications{
+        &__notification{
+          width: 500px;
+          background-color: darkgoldenrod;
+          margin: 40px auto;
+        }
+        &__paginate{
+        position: absolute;
+        right: 10px;
+        bottom: 10px;
+        }
+      }
     }
   }
+}
+
+.link-line{
+  text-decoration: none;
 }

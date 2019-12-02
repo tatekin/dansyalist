@@ -13,6 +13,12 @@
           = link_to "フォロワー", followers_user_path(current_user)
         .contents__left__follows__followers__count
           = current_user.followers.count
+    = link_to notifications_path do
+      通知
+      - if unchecked_notifications.any?
+        あるよ
+      - else
+        ないよ
     = link_to "お気に入り", root_path, class: "contents__left__content"
     = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "contents__left__content"
     = link_to "マイページ", user_path(current_user), class: "contents__left__content"
