@@ -1,0 +1,27 @@
+.contents__right__tweets__notifications__notification
+  - visitor = notification.visitor
+  - visited = notification.visited
+  .col-md-6.mx-auto
+    .form-inline
+      = link_to user_path(visitor) do
+        = visitor.nickname
+      さんが
+
+      - case notification.action
+      - when 'follow' then
+        = "あなたをフォローしました"
+      - when 'like' then
+        = link_to 'あなたの投稿', notification.tweet, style: "font-weight: bold;"
+        = "にいいねしました"
+      - when 'comment' then
+        - if notification.tweet.user_id == visited.id
+          = link_to "あなたの投稿", notification.tweet, style: "font-weight: bold;"
+        - else
+          = link_to tweet_path(notification.tweet) do
+            = notification.tweet.user.nickname + 'さんの投稿'
+        = "にコメントしました"
+        %p
+          = Comment.find_by(id: notification.comment_id).text
+
+    .small.text-muted.text-right
+      = time_ago_in_words(notification.created_at).upcase
