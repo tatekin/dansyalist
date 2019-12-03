@@ -26,3 +26,6 @@
     = link_to "新規登録", new_user_registration_path, class: "contents__left__content"
     = link_to "ログイン", new_user_session_path, class: "contents__left__content"
   = link_to "新規投稿", new_tweet_path, class: "contents__left__content"
+  = form_with(url: search_tweets_path, local: true, method: :get) do |form|
+    = form.text_field :keyword
+    = form.submit

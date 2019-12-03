@@ -5,6 +5,10 @@ class TweetsController < ApplicationController
     @tweets = Tweet.includes(:user).order("created_at DESC").page(params[:page]).per(3)
   end
 
+  def search
+    @tweets = Tweet.where('text LIKE(?)', "%#{params[:keyword]}%").page(params[:page]).per(3)
+  end
+
   def show
     @tweet = Tweet.find(params[:id])
     @comment = @tweet.comments.build
